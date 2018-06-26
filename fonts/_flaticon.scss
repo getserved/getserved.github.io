@@ -1,0 +1,65 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 26/03/2018 07:36
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-dfp:before { content: "\f100"; }
+.flaticon-privacy:before { content: "\f101"; }
+.flaticon-authentication:before { content: "\f102"; }
+.flaticon-wechat:before { content: "\f103"; }
+.flaticon-linkedin:before { content: "\f104"; }
+.flaticon-facebook:before { content: "\f105"; }
+.flaticon-youtube:before { content: "\f106"; }
+.flaticon-exchange:before { content: "\f107"; }
+.flaticon-bitcoin:before { content: "\f108"; }
+.flaticon-block:before { content: "\f109"; }
+.flaticon-chain:before { content: "\f10a"; }
+.flaticon-bell:before { content: "\f10b"; }
+.flaticon-cloud:before { content: "\f10c"; }
+    
+    $font-Flaticon-dfp: "\f100";
+    $font-Flaticon-privacy: "\f101";
+    $font-Flaticon-authentication: "\f102";
+    $font-Flaticon-wechat: "\f103";
+    $font-Flaticon-linkedin: "\f104";
+    $font-Flaticon-facebook: "\f105";
+    $font-Flaticon-youtube: "\f106";
+    $font-Flaticon-exchange: "\f107";
+    $font-Flaticon-bitcoin: "\f108";
+    $font-Flaticon-block: "\f109";
+    $font-Flaticon-chain: "\f10a";
+    $font-Flaticon-bell: "\f10b";
+    $font-Flaticon-cloud: "\f10c";

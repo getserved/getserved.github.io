@@ -1,0 +1,872 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="densitydpi=device-dpi,initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5">
+     <meta name="description" content="Blockchain United Unites Us In Both Worlds; Decentralized Digital World, Progressive Real World.">
+     <meta name="description" content="Blockchain United Unites Us In Both Worlds; Decentralized Digital World, Progressive Real World.">
+    <meta name="author" content="">
+	<link rel="icon" href="https://www.genesiscare.com.au/favicon.ico">
+    <title>GenesisCare</title>
+	<!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/search.css" />
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	
+	<link rel="stylesheet" type="text/css" href="fonts/flaticon.css" rel="stylesheet">
+	
+	<link rel="stylesheet" type="text/css" href="gallery/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="gallery/css/demo.css" />
+	
+	<link rel="stylesheet" type="text/css" href="gallery/css/component.css" />
+	<link rel="stylesheet" href="timeline/css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="timeline/css/style.css"> <!-- Resource style -->
+	<link rel="stylesheet" href="timeline/css/demo.css"> <!-- Demo style -->
+	
+	<link rel="stylesheet" type="text/css" href="css/main.css" rel="stylesheet">
+	<script src="gallery/js/modernizr.min.js"></script>
+	<script src="gallery/js/photostack.js"></script>
+	
+	<style>
+	
+	
+	.footer .logo{
+		display:flex;
+		margin-left:10vw;
+	}
+	
+	.our-timeline{
+		background:white;
+	}
+	main{
+		color:#333;
+		font-family:Helvetica;
+		line-height:1.5;
+		font-size:1.25rem;
+	}
+	.thumbs{
+		height:5rem;
+	}
+	</style>
+
+    
+
+    <!-- Custom styles for this template -->
+    
+	<script src="js/jquery-2.1.4.js" type="text/javascript"></script>
+   
+	<script>
+	var MobileUA = (function() {  
+			var ua = navigator.userAgent.toLowerCase();  
+	  
+			var mua = {  
+				IOS: /ipod|iphone|ipad/.test(ua), //iOS  
+				IPHONE: /iphone/.test(ua), //iPhone  
+				IPAD: /ipad/.test(ua), //iPad  
+				ANDROID: /android/.test(ua), //Android Device  
+				WINDOWS: /windows/.test(ua), //Windows Device  
+				TOUCH_DEVICE: ('ontouchstart' in window) || /touch/.test(ua), //Touch Device  
+				MOBILE: /mobile/.test(ua), //Mobile Device (iPad)  
+				ANDROID_TABLET: false, //Android Tablet  
+				WINDOWS_TABLET: false, //Windows Tablet  
+				TABLET: false, //Tablet (iPad, Android, Windows)  
+				SMART_PHONE: false //Smart Phone (iPhone, Android)  
+			};  
+	  
+			mua.ANDROID_TABLET = mua.ANDROID && !mua.MOBILE;  
+			mua.WINDOWS_TABLET = mua.WINDOWS && /tablet/.test(ua);  
+			mua.TABLET = mua.IPAD || mua.ANDROID_TABLET || mua.WINDOWS_TABLET;  
+			mua.SMART_PHONE = mua.MOBILE && !mua.TABLET;  
+	  
+			return mua;  
+		}());  
+	</script>
+	
+
+  </head>
+<body>
+
+<script type="x-shader/x-vertex" id="vertexshader">
+	//attribute float size;
+	attribute float age;
+	attribute vec3 velocity;
+	attribute vec3 customColor;
+	varying vec3 vColor;
+	void main() {
+		vColor = customColor;
+		float size = age * 0.1;
+		vec3 pos = velocity * age;
+		vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+		gl_PointSize = size * (300.0 / -mvPosition.z);
+		gl_Position = projectionMatrix * mvPosition;
+	}
+</script>
+<script type="x-shader/x-fragment" id="fragmentshader">
+	uniform vec3 color;
+	uniform sampler2D texture;
+	varying vec3 vColor;
+	void main() {
+		gl_FragColor = vec4(color * vColor, 1.0);
+		gl_FragColor = gl_FragColor * texture2D(texture, gl_PointCoord);
+	}
+	
+</script>
+
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js'></script>
+	<script src='http://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js'></script>
+	<script  src="js/index.js"></script>
+    <nav class="nav navbar-toggleable-md  fixed-top bg-inverse">
+     <div class="container-fluid">
+			<div class="row">
+				<div class="col-md-1">
+					<a href="javascript:void(0)" class="nav_icon" data-scrollto="body">
+							<img class="logo" src="images/gc-logo.png"/>
+						</a>
+				</div>
+				<div class="col-md-5" style="margin-top:1rem;">
+						
+				
+					<input style="float:left;" id="s" type="text" />
+					
+					<input style="float:left;" type="submit" value="Submit" id="submitButton" />
+
+				</div>
+				<div class="col-md-6 container" >
+	
+						<div class="nav_item col-md-2 col-xs-4">
+							<a href="javascript:void(0)" class="nav_btn" data-scrollto=".about-us">
+							About Us
+							</a>
+						</div>
+						<div class="nav_item col-md-2 col-xs-4 ">
+							<a href="javascript:void(0)" class="nav_btn" data-scrollto=".our-timeline">
+							CancerCare
+							</a>
+						</div>
+						<div class="nav_item col-md-2 col-xs-4">
+							<a href="javascript:void(0)" class="nav_btn" data-scrollto=".white-paper">
+							HeartCare
+							</a>
+						</div>
+						<div class="nav_item col-md-2 col-xs-4">
+							<a href="javascript:void(0)" class="nav_btn" data-scrollto=".our-team">
+							SleepCare
+							</a>
+						</div>
+						<div class="nav_item col-md-2 col-xs-4">
+							<a href="javascript:void(0)" class="nav_btn" data-scrollto=".our-partners">
+							Patients
+							</a>
+						</div>
+						<div class="nav_item col-md-2 col-xs-4">
+							<a href="javascript:void(0)" class="nav_btn" data-scrollto=".contact-us">
+							Professionals
+							</a>
+						</div>
+						
+				
+					</div>
+				</div>
+				
+			</div>
+		</div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="main">
+      <div class="container">
+		<img src="images/home-page-banner-NPS-2016.jpg"/>
+		<div class="row">
+			<div class="col-md-2 col-xs-1"></div>
+			<div class="col-md-8 col-xs-10">
+				
+
+			</div>
+			<div class="col-md-2 col-xs-1"></div>
+		</div>
+			
+    <div id="resultsDiv"></div>
+
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="js/script.js"></script>
+      </div>
+    </div>
+
+	<div id="about-us" class="about-us light_bg container-fluid">
+	<div class="row">
+		<div class="col-md-2 col-xs-1"></div>
+		<div class="col-md-8 col-xs-10">
+			<div class="inner_header"></div>
+			<div class="inner_text">
+			</div>
+		</div>
+		<div class="col-md-2 col-xs-1"></div>
+	</div>
+	<div class="container-fluid">
+			<div class="row">
+					<div class="col-md-1 col-lg-1"></div>
+					<div class="col-md-10 col-lg-10 container">
+						<div class="col-md-6 col-xd-6" style="text-align:left">
+							<h1>About Us</h1>
+							<main style="">
+								GenesisCare is largest provider of radiation oncology in Australia, the UK and Spain, and also the leading provider of cardiology and sleep treatments in Australia. We exist to fill the treatment gap for the biggest disease burdens – cancer and heart disease – in an environment of substantial unmet demand from an ageing population. 
+								<div class="plyr__video-embed" style="margin-top:1rem;" id="player">
+									<iframe src="https://www.youtube.com/embed/FxYCEt8h1Ek?rel=0&fs=1&wmode=transparent" allowfullscreen allowtransparency allow="autoplay" width=720 height=480></iframe>
+								</div>
+							</main>
+						</div>
+						
+						<div class="col-md-6 col-xd-6">
+							<h1></h1>
+							<main>
+								<img src="./images/treating-benign-conditions-tile-1.jpg"/>
+								<img src="./images/targeting-cancer-tile-gc.jpg"/>
+							</main>
+						</div>
+						
+						
+						
+					</div>
+					<div class="col-md-1 col-lg-1"></div>
+				</div>
+			</div>
+		</div>
+<div id="our-services" class="our-services container-fluid">
+	<div class="row">
+		<div class="col-md-1 col-lg-1"></div>
+		<div class="col-md-10 col-lg-10">
+			<div class="inner_header">Healthcare Centers</div>
+			<div class="inner_text">
+				
+			</div>
+		</div>
+		<div class="col-md-1 col-lg-1"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-1 col-lg-1"></div>
+		<div class="col-md-10 col-lg-10 container">
+			<div class="row">
+				<div class="col-md-4">
+					<i class="flat-icon flaticon-authentication"></i>
+					<div class="inner_text">
+						<h3>Pathway</h3>
+						Include a referral system and a medical record web application that uses inputted data to provide evidence based research for Cancer and Cardiac Disease patients.
+
+					</div>
+				</div>
+				<div class="col-md-4">
+						<i class="flat-icon flaticon-privacy"></i>
+						<div class="inner_text">
+							<h3>Profiles</h3>
+							GenesisCare's patient focus is underpinned by a strong model of clinical independence and local practice management combined with the knowledge, efficiency and scale benefits of the national network.
+					</div>
+				</div>
+				<div class="col-md-4">
+						<i class="flat-icon flaticon-dfp"></i>
+						<div class="inner_text" style="text-align:center">
+							<h3>Centers</h3>
+							<ul>
+							<li>GenesisCare National Office</li>
+							<li>CancerCare Locations</li>
+							<li>HeartCare Locations</li>
+							<li>SleepCare Locations</li>
+							<li>GenesisCare UK</li>
+							<li>GenesisCare Spain</li>
+							</ul>
+
+						</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-1 col-lg-1"></div>
+	</div>
+</div>
+<div id="our-timeline" class="our-timeline container-fluid">
+	<div class="row">
+		<div class="col-md-1 col-lg-1"></div>
+		<div class="col-md-10 col-lg-10">
+			<div class="inner_header">Latest News</div>
+			<div class="inner_text">
+				
+			</div>
+		</div>
+		<div class="col-md-1 col-lg-1"></div>
+	</div>
+	<div class="row">
+<section class="cd-timeline js-cd-timeline">
+		<div class="cd-timeline__container">
+			<div class="cd-timeline__block js-cd-block">
+				<div class="cd-timeline__img cd-timeline__img--setup js-cd-img">
+					<img src="timeline/img/cd-icon-found.svg" alt="Picture">
+				</div> <!-- cd-timeline__img -->
+
+				<div class="cd-timeline__content js-cd-content">
+					<h2>20 March 2018</h2>
+					<p>Helping your body during and after cancer treatment: a must-see video for patients</p>
+					
+				</div> <!-- cd-timeline__content -->
+			</div> <!-- cd-timeline__block -->
+
+			<div class="cd-timeline__block js-cd-block">
+				<div class="cd-timeline__img cd-timeline__img--launch js-cd-img">
+					<img src="timeline/img/cd-icon-launch.svg" alt="Movie">
+				</div> <!-- cd-timeline__img -->
+
+				<div class="cd-timeline__content js-cd-content">
+					<h2>12 Dec 2017</h2>
+					<p>Two new state-of-the-art cancer services coming to Wide Bay</p>
+					
+				</div> <!-- cd-timeline__content -->
+			</div> <!-- cd-timeline__block -->
+
+			<div class="cd-timeline__block js-cd-block">
+				<div class="cd-timeline__img cd-timeline__img--handshake js-cd-img">
+					<img src="timeline/img/cd-icon-handshake.svg" alt="Picture">
+				</div> <!-- cd-timeline__img -->
+
+				<div class="cd-timeline__content js-cd-content">
+					<h2>16 Oct 2017</h2>
+					<p>GenesisCare and Wide Bay Hospital and Health Service strike life-saving cardiac partnership</p>
+					
+				</div> <!-- cd-timeline__content -->
+			</div> <!-- cd-timeline__block -->
+
+			<div class="cd-timeline__block js-cd-block">
+				<div class="cd-timeline__img cd-timeline__img--globe js-cd-img">
+					<img src="timeline/img/cd-icon-globe.svg" alt="Location">
+				</div> <!-- cd-timeline__img -->
+
+				<div class="cd-timeline__content js-cd-content">
+					<h2>25 Sept 2017</h2>
+					<p>Invasive Cardiology to commence at St Vincent’s Private Hospital, Tooowoomba</p>
+					
+				</div> <!-- cd-timeline__content -->
+			</div> <!-- cd-timeline__block -->
+
+			<div class="cd-timeline__block js-cd-block">
+				<div class="cd-timeline__img cd-timeline__img--location js-cd-img">
+					<img src="timeline/img/cd-icon-location.svg" alt="Location">
+				</div> <!-- cd-timeline__img -->
+
+				<div class="cd-timeline__content js-cd-content">
+					<h2>09 Jun 2017</h2>
+					<p>Offering rapid access to world-class comprehensive cancer treatment at Cabrini Malvern</p>
+					
+				</div> <!-- cd-timeline__content -->
+			</div> <!-- cd-timeline__block -->
+
+			<div class="cd-timeline__block js-cd-block">
+				<div class="cd-timeline__img cd-timeline__img--string js-cd-img">
+					<img src="timeline/img/cd-icon-string.svg" alt="Movie">
+				</div> <!-- cd-timeline__img -->
+
+				<div class="cd-timeline__content js-cd-content">
+					<h2>06 Jun 2017</h2>
+					<p>Building our resilience to support patients</p>
+					
+				</div> <!-- cd-timeline__content -->
+			</div> <!-- cd-timeline__block -->
+			<div class="cd-timeline__block js-cd-block">
+				<div class="cd-timeline__img cd-timeline__img--galaxy js-cd-img">
+					<img src="timeline/img/cd-icon-galaxy.svg" alt="Movie">
+				</div> <!-- cd-timeline__img -->
+
+				<div class="cd-timeline__content js-cd-content">
+					<h2>11 May 2017</h2>
+					<p>Improving patient outcomes through research</p>
+					
+				</div> <!-- cd-timeline__content -->
+			</div> <!-- cd-timeline__block -->
+			
+		</div>
+	</section> <!-- cd-timeline -->
+	<script src="timeline/js/main.js"></script> <!-- Resource JavaScript -->
+	</div>
+</div>
+	<div id="our-team" class="our-team container-fluid">
+		<div class="row">
+			<div class="col-md-1 col-lg-2"></div>
+			<div class="col-md-10 col-lg-8">
+				<div class="inner_header">Our Team</div>
+				<div class="inner_text">
+					
+				</div>
+			</div>
+			<div class="col-md-1 col-lg-2"></div>
+		</div>
+		<div class="row">
+					<div class="col-md-1 col-lg-1"></div>
+					<div class="col-md-10 col-lg-10">
+						<div class="col-md-3">
+							<img class="portrait" src="./images/team/1.jpg"/>
+							<div class="">
+								<div class="member_name">Assoc Prof Jarad Martin
+								<div><h5>CEO</h5></div>
+								</div>
+								<div class="member_title">
+									<ul>
+										<li> MBChB BSc PhD DMed, FRANZCR GAustMS </li>
+										<li> radiation oncologist </li>
+										<li> IMRT</li>
+										<li> IGRT & SBRT</li>
+									</ul>
+									
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-md-3">
+							<img class="portrait" src="./images/team/2.jpg"/>
+							<div>
+								<div class="member_name">Dr Marita Morgia <div><h5>CIO</h5></div>
+								</div>
+								<div class="member_title">
+									<ul>
+										<li> MBBS (USyd) FRANZCR</li>
+										<li> specialist radiation oncology</li>
+										<li> breast, gynaecological and gastrointestinal malignancies</li>
+										<li> IMRT</li>
+							
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<img class="portrait" src="./images/team/3.jpg"/>
+							<div>
+								<div class="member_name">Dr Rasha Cosman <div><h5>CTO</h5></div></div>
+								<div class="member_title">
+									<ul>
+										<li>BSc (Med), MBBS, FRACP<</li>
+										<li> Consultant Physician and Medical Oncologist. Conjoint Lecturer, UNSW</li>
+										<li> medical oncologist</li>
+										
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<img class="portrait" src="./images/team/4.jpg"/>
+							<div>
+								<div class="member_name">Assoc Prof. George Hruby <div><h5>COO</h5></div></div>
+								<div class="member_title">
+									<ul>
+										<li>BHB MBChB, FRANZCR</li>
+										<li> clinical fellowship at the University of Toronto</li>
+										<li>  Staff Specialist in Radiation Oncology </li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-1 col-lg-1"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-1 col-lg-1"></div>
+					<div class="col-md-10 col-lg-10">
+						<div class="col-md-3">
+							<img class="portrait" src="./images/team/1.jpg"/>
+							<div class="">
+								<div class="member_name">Assoc Prof Jarad Martin
+								<div><h5>CEO</h5></div>
+								</div>
+								<div class="member_title">
+									<ul>
+										<li> MBChB BSc PhD DMed, FRANZCR GAustMS </li>
+										<li> radiation oncologist </li>
+										<li> IMRT</li>
+										<li> IGRT & SBRT</li>
+									</ul>
+									
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-md-3">
+							<img class="portrait" src="./images/team/2.jpg"/>
+							<div>
+								<div class="member_name">Dr Marita Morgia <div><h5>CIO</h5></div>
+								</div>
+								<div class="member_title">
+									<ul>
+										<li> MBBS (USyd) FRANZCR</li>
+										<li> specialist radiation oncology</li>
+										<li> breast, gynaecological and gastrointestinal malignancies</li>
+										<li> IMRT</li>
+							
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<img class="portrait" src="./images/team/3.jpg"/>
+							<div>
+								<div class="member_name">Dr Rasha Cosman <div><h5>CTO</h5></div></div>
+								<div class="member_title">
+									<ul>
+										<li>BSc (Med), MBBS, FRACP<</li>
+										<li> Consultant Physician and Medical Oncologist. Conjoint Lecturer, UNSW</li>
+										<li> medical oncologist</li>
+										
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<img class="portrait" src="./images/team/4.jpg"/>
+							<div>
+								<div class="member_name">Assoc Prof. George Hruby <div><h5>COO</h5></div></div>
+								<div class="member_title">
+									<ul>
+										<li>BHB MBChB, FRANZCR</li>
+										<li> clinical fellowship at the University of Toronto</li>
+										<li>  Staff Specialist in Radiation Oncology </li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-1 col-lg-1"></div>
+						
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="our-advisor" class="our-advisor light_bg container-fluid">
+		<div class="row">
+			<div class="col-md-1 col-lg-2"></div>
+			<div class="col-md-10 col-lg-8">
+				<div class="inner_header">Doctors</div>
+				<div class="inner_text">
+					
+				</div>
+			</div>
+			<div class="col-md-1 col-lg-2"></div>
+		</div>
+		<div class="row">
+					<div class="col-md-1 col-lg-2"></div>
+					<div class="col-md-10 col-lg-8">
+						<div class="col-md-4">
+							<img class="portrait" src="./images/advisor/1.jpg"/>
+							<div>
+								<div class="member_name">Prof. John Boyages</div>
+								<div class="member_title">
+									<ul>
+										<li>MB BS (Hons), PhD, FRANZCR</li>
+										<li>cancer specialist</li>
+										<li>ecognised authority</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<img class="portrait" src="./images/advisor/2.jpg"/>
+							<div>
+								<div class="member_name">Prof. Gerald Fogarty</div>
+								<div class="member_title">
+									<ul>
+										<li> BSc, MBBS (Hons), FRANZCR, PhD</li>
+										<li>Director of Radiation Oncology</li>
+										<li> Specialist Medical Review Council</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<img class="portrait" src="./images/advisor/3.jpg"/>
+							<div class="">
+								<div class="member_name">Assoc Prof. Michael Izard ADM</div>
+								<div class="member_title">
+									<ul>
+										<li> MBBS(Lon), M Medical Humanities, FRANZCR</li>
+										<li> Clinical Associate Professor,</li>
+										<li> Prostate Cancer Foundation of Australia</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<div class="col-md-1 col-lg-2"></div>
+	</div>
+	<div class="row">
+					<div class="col-md-1 col-lg-2"></div>
+					<div class="col-md-10 col-lg-8">
+						<div class="col-md-4">
+							<img class="portrait" src="./images/advisor/1.jpg"/>
+							<div>
+								<div class="member_name">Prof. John Boyages</div>
+								<div class="member_title">
+									<ul>
+										<li>MB BS (Hons), PhD, FRANZCR</li>
+										<li>cancer specialist</li>
+										<li>ecognised authority</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<img class="portrait" src="./images/advisor/2.jpg"/>
+							<div>
+								<div class="member_name">Prof. Gerald Fogarty</div>
+								<div class="member_title">
+									<ul>
+										<li> BSc, MBBS (Hons), FRANZCR, PhD</li>
+										<li>Director of Radiation Oncology</li>
+										<li> Specialist Medical Review Council</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<img class="portrait" src="./images/advisor/3.jpg"/>
+							<div class="">
+								<div class="member_name">Assoc Prof. Michael Izard ADM</div>
+								<div class="member_title">
+									<ul>
+										<li> MBBS(Lon), M Medical Humanities, FRANZCR</li>
+										<li> Clinical Associate Professor,</li>
+										<li> Prostate Cancer Foundation of Australia</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<div class="col-md-1 col-lg-2"></div>
+	</div>
+	<div class="row">
+					<div class="col-md-1 col-lg-2"></div>
+					<div class="col-md-10 col-lg-8">
+						<div class="col-md-4">
+							<img class="portrait" src="./images/advisor/1.jpg"/>
+							<div>
+								<div class="member_name">Prof. John Boyages</div>
+								<div class="member_title">
+									<ul>
+										<li>MB BS (Hons), PhD, FRANZCR</li>
+										<li>cancer specialist</li>
+										<li>ecognised authority</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<img class="portrait" src="./images/advisor/2.jpg"/>
+							<div>
+								<div class="member_name">Prof. Gerald Fogarty</div>
+								<div class="member_title">
+									<ul>
+										<li> BSc, MBBS (Hons), FRANZCR, PhD</li>
+										<li>Director of Radiation Oncology</li>
+										<li> Specialist Medical Review Council</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<img class="portrait" src="./images/advisor/3.jpg"/>
+							<div class="">
+								<div class="member_name">Assoc Prof. Michael Izard ADM</div>
+								<div class="member_title">
+									<ul>
+										<li> MBBS(Lon), M Medical Humanities, FRANZCR</li>
+										<li> Clinical Associate Professor,</li>
+										<li> Prostate Cancer Foundation of Australia</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<div class="col-md-1 col-lg-2"></div>
+	</div>
+	</div>
+	
+	<div id="our-partners" class="our-partners light_bg container-fluid">
+		<div class="row">
+			<div class="col-md-1 col-lg-2"></div>
+			<div class="col-md-10 col-lg-8">
+				<div class="inner_header">Partners</div>
+				<div class="inner_text">
+					
+				</div>
+			</div>
+			<div class="col-md-1 col-lg-2"></div>
+		</div>
+		<div class="row">
+					<div class="col-md-1 col-lg-2"></div>
+					<div class="col-md-10 col-lg-8">
+						<div class="col-md-6">
+							<a href="http://www.ustc.edu.cn/" target="window">
+							<img class="edu-partners" src="./images/partners/ustc.png"/>
+							</a>
+						</div>
+						
+						<div class="col-md-6">
+							<a href="https://www.uts.edu.au/" target="window">
+							<img class="edu-partners" src="./images/partners/uts.png"/>
+							</a>
+						</div>
+						
+						
+					</div>
+					<div class="col-md-1 col-lg-2"></div>
+			
+		</div>
+		
+	</div>
+	
+	<div id="our-partners" class="our-partners light_bg container-fluid">
+		<div class="row">
+			<div class="col-md-1 col-lg-2"></div>
+			<div class="col-md-10 col-lg-8">
+				<div class="inner_header">Investors</div>
+				<div class="inner_text">
+					
+				</div>
+			</div>
+			<div class="col-md-1 col-lg-2"></div>
+		</div>
+		<div class="row">
+					<div class="col-md-1 col-lg-2"></div>
+					<div class="col-md-10 col-lg-8">
+						<div class="col-md-3">
+							<a href="https://www.blockchainglobal.com" target="window">
+							<img class="partners" src="./images/partners/blg.png"/>
+							</a>
+						</div>
+						<div class="col-md-3">
+							<a href="http://astar.fund" target="window">
+							<img class="partners" src="./images/partners/astar.png"/>
+							</a>
+						</div>
+						<div class="col-md-3">
+							<a href="https://www.bocapital.com.au" target="window">
+							<img class="partners" src="./images/partners/boc.png"/>
+							</a>
+						</div>
+						<div class="col-md-3">
+							<a href="http://morriscapitalaustralia.com/" target="window">
+							<img class="partners" src="./images/partners/morris.png"/>
+							</a>
+						</div>
+						
+					</div>
+					<div class="col-md-1 col-lg-2"></div>
+			
+		</div>
+		
+	</div>
+    <div id="contact-us" class="contact-us container-fluid">
+		<div class="row">
+			<div class="col-md-1 col-lg-2"></div>
+			<div class="col-md-10 col-lg-8">
+				<div class="inner_header">Contact Us</div>
+				<div class="inner_text">
+					
+				</div>
+			</div>
+			<div class="col-md-1 col-lg-2"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-1 col-lg-2"></div>	
+			<div class="col-md-1 col-lg-2"></div>	
+				<div class="container">
+					<div class="col-md-12" >
+						<div >
+							<span class="input input--hoshi">
+								<input class="input__field input__field--hoshi" type="text" id="input-1" />
+								<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-1">
+									<span class="input__label-content input__label-content--hoshi">Name</span>
+								</label>
+							</span>
+							<span class="input input--hoshi">
+								<input class="input__field input__field--hoshi" type="text" id="input-2" />
+								<label class="input__label input__label--hoshi input__label--hoshi-color-2" for="input-2">
+									<span class="input__label-content input__label-content--hoshi">Email</span>
+								</label>
+							</span>
+							<span class="input input--hoshi">
+								<input class="input__field input__field--hoshi" type="text" id="input-3" />
+								<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="input-3">
+									<span class="input__label-content input__label-content--hoshi">Phone</span>
+								</label>
+							</span>
+							<span class="input input--hoshi">
+								<input class="input__field input__field--hoshi" type="text" id="input-4" />
+								<label class="input__label input__label--hoshi input__label--hoshi-color-4" for="input-4">
+									<span class="input__label-content input__label-content--hoshi">Memo</span>
+								</label>
+							</span>
+							<div id="submit" class="breath size2" title="Submit">Submit</div>
+							<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									emailjs.init("user_Debm64my0zwd6rdsbJRbL");
+									$("#submit").click(function(){
+										emailjs.send("gmail", "blockchainunited", {"name":$("#input-1").val(),"email":$("#input-2").val(),"phone":$("#input-3").val(),"memo":$("#input-4").val()});
+										alert("Thank You For Your Enquiry.We Will Reach You Very Soon.");
+									});
+								});
+							</script>
+						</div>
+					</div>	
+					
+				</div>
+			<div class="col-md-1 col-lg-2"></div>	
+		</div>
+	</div>
+
+      <footer>
+     	<div class="container-fluid">
+		<div class="rights">© 2018 </div>
+		</div>
+      </footer>
+    </div> <!-- /container -->
+
+
+  </body>
+  <script src="gallery/js/classie.js"></script>
+		 <script>
+$(document).ready(function(){
+		
+	
+		$(".down-arrow,.nav_btn,.nav_icon").click(function() {
+				var scrollto = $(this).data("scrollto");
+				$('html').animate({
+					scrollTop: ($(scrollto).offset().top-$(".nav").height())
+				},1000);
+		});
+		
+		$('.input__field').change(function() {
+			var $this = $(this);
+			var $thisInput = $this.find('input');        
+			if ($this.val() !== "") {
+			  $this.addClass('input--filled');
+			} else {
+			  $this.removeClass('input--filled');      
+			}
+		  });
+		
+		document.addEventListener('scroll', function (event) {
+			if($(window).scrollTop() > ($(window).height()-$(".nav").height())){
+				$(".nav").css("background","#062339");
+			}else{
+				$(".nav").css("background","");
+			}
+			
+		}, true /*Capture event*/);
+	});
+</script>
+</html>
